@@ -3,9 +3,74 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck", "TFL.Road.StatusCheck\TFL.Road.StatusCheck.csproj", "{C7E599B9-1A76-4B75-AAE8-DB45FEAAE7A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Tests", "TFL.Road.StatusCheck.Tests\TFL.Road.StatusCheck.Tests.csproj", "{9ED87CA2-60CC-449F-B2DA-EC785E24A492}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AD2A8FFF-1E4A-4D61-8C3F-4CC7DB63CDD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D0EEC63D-4E35-4762-B366-E56F3EA5DEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Application", "TFL.Road.StatusCheck.Application\TFL.Road.StatusCheck.Application.csproj", "{602887C1-9DAD-4303-920A-AF1BAF7894E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Contracts", "TFL.Road.StatusCheck.Contracts\TFL.Road.StatusCheck.Contracts.csproj", "{A462DD4F-626C-433D-9D4A-83C36C491C58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Interfaces", "TFL.Road.StatusCheck.Interfaces\TFL.Road.StatusCheck.Interfaces.csproj", "{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Application.Entities", "TFL.Road.StatusCheck.Application.Entities\TFL.Road.StatusCheck.Application.Entities.csproj", "{765F102C-6757-40A0-8BAF-CF5DDC3D2236}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F87DC0F1-D9A3-4DF6-8289-980553AEF620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFL.Road.StatusCheck.Infrastructure.TFLOpenData", "TFL.Road.StatusCheck.Infrastructure.TFLOpenData\TFL.Road.StatusCheck.Infrastructure.TFLOpenData.csproj", "{9BF9CE20-D667-449B-9934-A574D3616B3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFLOpenData", "TFLOpenData", "{5711B652-3A4B-43D4-9EC1-6A4DC5C7FDD5}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7E599B9-1A76-4B75-AAE8-DB45FEAAE7A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E599B9-1A76-4B75-AAE8-DB45FEAAE7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E599B9-1A76-4B75-AAE8-DB45FEAAE7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E599B9-1A76-4B75-AAE8-DB45FEAAE7A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED87CA2-60CC-449F-B2DA-EC785E24A492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED87CA2-60CC-449F-B2DA-EC785E24A492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED87CA2-60CC-449F-B2DA-EC785E24A492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED87CA2-60CC-449F-B2DA-EC785E24A492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{602887C1-9DAD-4303-920A-AF1BAF7894E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{602887C1-9DAD-4303-920A-AF1BAF7894E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{602887C1-9DAD-4303-920A-AF1BAF7894E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{602887C1-9DAD-4303-920A-AF1BAF7894E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A462DD4F-626C-433D-9D4A-83C36C491C58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A462DD4F-626C-433D-9D4A-83C36C491C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A462DD4F-626C-433D-9D4A-83C36C491C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A462DD4F-626C-433D-9D4A-83C36C491C58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765F102C-6757-40A0-8BAF-CF5DDC3D2236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765F102C-6757-40A0-8BAF-CF5DDC3D2236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765F102C-6757-40A0-8BAF-CF5DDC3D2236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765F102C-6757-40A0-8BAF-CF5DDC3D2236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF9CE20-D667-449B-9934-A574D3616B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF9CE20-D667-449B-9934-A574D3616B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF9CE20-D667-449B-9934-A574D3616B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF9CE20-D667-449B-9934-A574D3616B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9ED87CA2-60CC-449F-B2DA-EC785E24A492} = {AD2A8FFF-1E4A-4D61-8C3F-4CC7DB63CDD3}
+		{602887C1-9DAD-4303-920A-AF1BAF7894E5} = {D0EEC63D-4E35-4762-B366-E56F3EA5DEDD}
+		{A462DD4F-626C-433D-9D4A-83C36C491C58} = {D0EEC63D-4E35-4762-B366-E56F3EA5DEDD}
+		{7BF25465-86C8-4CE1-A86D-AC1C9FFA2F8F} = {D0EEC63D-4E35-4762-B366-E56F3EA5DEDD}
+		{765F102C-6757-40A0-8BAF-CF5DDC3D2236} = {D0EEC63D-4E35-4762-B366-E56F3EA5DEDD}
+		{9BF9CE20-D667-449B-9934-A574D3616B3D} = {5711B652-3A4B-43D4-9EC1-6A4DC5C7FDD5}
+		{5711B652-3A4B-43D4-9EC1-6A4DC5C7FDD5} = {F87DC0F1-D9A3-4DF6-8289-980553AEF620}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF95DA4E-9C25-4501-97B7-D6E348C33612}

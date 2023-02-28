@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Application.Entities\TFL.Road.StatusCheck.Application.Entities.csproj" />
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Interfaces\TFL.Road.StatusCheck.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
