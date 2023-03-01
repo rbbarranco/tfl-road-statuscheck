@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Input;
@@ -13,6 +14,8 @@ using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Serialiser;
 using ApplicationMapperInterfaces = TFL.Road.StatusCheck.Application.Interfaces.Mappers;
 using ApplicationMappers = TFL.Road.StatusCheck.Application.Mappers;
 using InfraMappers = TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Mappers;
+
+[assembly: ExcludeFromCodeCoverage]
 
 var roadId = GetRoadId(args);
 
