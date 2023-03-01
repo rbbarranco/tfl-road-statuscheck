@@ -34,9 +34,9 @@ namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Client
                 uriBuilder.Append("app_id").Append("=").Append(_configuration.GetSection("TFLOpenData:AppId").Value).Append("&");
                 uriBuilder.Append("app_key").Append("=").Append(_configuration.GetSection("TFLOpenData:AppKey").Value);
 
-                var uri = uriBuilder.ToString();
-                
-                httpClient.BaseAddress = new Uri(uri);
+                if (!Uri.TryCreate(uriBuilder.ToString(), UriKind.Absolute, out var uri))
+                    throw new UriFormatException("Invalid uri");
+                httpClient.BaseAddress = uri;
 
                 return await httpClient.GetAsync(uri);
             }
