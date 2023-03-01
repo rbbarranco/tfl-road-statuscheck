@@ -26,7 +26,7 @@ namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Client
                 var uriBuilder = new StringBuilder();
                 uriBuilder
                     .Append(_configuration.GetSection("TFLOpenData:BaseUrl").Value).Append("/")
-                    .Append(HttpUtility.HtmlEncode(query));
+                    .Append(query);
                 if (query.Contains('?'))
                     uriBuilder.Append("&");
                 else
