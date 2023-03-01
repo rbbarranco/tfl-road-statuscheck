@@ -7,6 +7,10 @@ using TFL.Road.StatusCheck.Application.Interfaces.Services;
 
 namespace TFL.Road.StatusCheck.Application.Services
 {
+    /// <summary>
+    /// Implementation of the road service. This class is merely a coordinator.
+    /// This service will be used by consumers for road related operations e.g. getting a road's status
+    /// </summary>
     public class RoadService : IRoadService
     {
         private readonly IValidator<GetRoadStatusRequest> _requestValidator;

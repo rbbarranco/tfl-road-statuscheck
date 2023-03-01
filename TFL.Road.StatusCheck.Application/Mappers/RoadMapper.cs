@@ -6,6 +6,14 @@ using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 [assembly: InternalsVisibleTo("TFL.Road.StatusCheck.Tests")]
 namespace TFL.Road.StatusCheck.Application.Mappers
 {
+    /// <summary>
+    /// Contract mapper implementation for the Application layer
+    /// Used for contract to entity mapping and vice versa
+    ///
+    /// The internal methods are exposed to the test project so they can be tested independent of the methods that are using them
+    /// This is also to ensure that the methods using these internal methods won't have overlapping tests
+    /// The internal methods weren't made public as there are no actual users of this method
+    /// </summary>
     public class RoadMapper : IRoadMapper
     {
         public Entity.Input.GetRoadStatusRequest? Map(Contract.Input.GetRoadStatusRequest? request)

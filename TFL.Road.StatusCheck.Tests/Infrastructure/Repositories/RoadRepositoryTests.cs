@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
+using System.Net;
 using TFL.Road.StatusCheck.Application.Entities.Road.V1.Input;
 using TFL.Road.StatusCheck.Application.Entities.Road.V1.Output;
 using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Client;
@@ -19,6 +14,9 @@ using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Serialiser;
 
 namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Unit tests for the road repository.
+    /// </summary>
     public class RoadRepositoryTests
     {
         private class MockProvider
@@ -101,24 +99,31 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
             }
         }
 
-        #region Response creation test(s)
+        #region CreateResponse test(s)
 
-        #region CreateResponseForOK test(s)
+        // *** //
+        // These tests were added to ensure that the correct response is created depending on the scenario/overload
+        // This is to ensure as well that the tests for the actual method - GetRoadStatusAsync -
+        //      doesn't have any overlapping tests checking the correctness of the response
+        //      thus keeping the tests for that method checking only for the different scenarios
+        // *** //
 
-        private static object[] _createResponseForOKInvalidScenarios = new[]
+        #region IEnumerable<RoadStatus> overload test(s)
+
+        private static object[] _createResponseRoadStatusesOverloadInvalidScenarios = new[]
         {
             new object[] { null },
             new object[] { Enumerable.Empty<RoadStatus>() },
             new object[] { new[] { default(RoadStatus) } }
         };
 
-        [TestCaseSource(nameof(_createResponseForOKInvalidScenarios))]
-        public void CreateResponseForOK_GivenInvalidValues_ThenErrorResponseReturned(IEnumerable<RoadStatus> roadStatuses)
+        [TestCaseSource(nameof(_createResponseRoadStatusesOverloadInvalidScenarios))]
+        public void CreateResponse_RoadStatuses_GivenInvalidValues_ThenErrorResponseReturned(IEnumerable<RoadStatus> roadStatuses)
         {
             var mockProvider = new MockProvider();
             var repo = mockProvider.GetRepository();
 
-            var result = repo.CreateResponseForOK(roadStatuses);
+            var result = repo.CreateResponse(roadStatuses);
 
             using (new AssertionScope())
             {
@@ -131,7 +136,7 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
         }
 
         [Test]
-        public void CreateResponseForOK_GivenValidValues_ThenCorrectResponseReturned()
+        public void CreateResponse_RoadStatuses_GivenValidValues_ThenCorrectResponseReturned()
         {
             var mockProvider = new MockProvider();
             var repo = mockProvider.GetRepository();
@@ -144,7 +149,7 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
 
             mockProvider.SetUpRoadMapperMapToEntityMock(roadStatuses.First(), new RoadStatusResult());
 
-            var result = repo.CreateResponseForOK(roadStatuses);
+            var result = repo.CreateResponse(roadStatuses);
 
             using (new AssertionScope())
             {
@@ -158,17 +163,17 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
         }
         #endregion
 
-        #region CreateResponseForNotFound test(s)
+        #region ErrorResponse overload test(s)
 
         [Test]
-        public void CreateResponseForNotFound_GivenErrorCausedByInvalidRoad_ThenCorrectResponseReturned()
+        public void CreateResponse_ErrorResponse_GivenErrorCausedByInvalidRoad_ThenCorrectResponseReturned()
         {
             var mockProvider = new MockProvider();
             var repo = mockProvider.GetRepository();
 
             var errorResponse = new ErrorResponse() { Message = "The following road id is not recognised: A112" };
 
-            var result = repo.CreateResponseForNotFound(errorResponse);
+            var result = repo.CreateResponse(errorResponse);
 
             using (new AssertionScope())
             {
@@ -182,14 +187,14 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
         }
 
         [Test]
-        public void CreateResponseForNotFound_GivenErrorNotCausedByInvalidRoad_ThenErrorResponseReturned()
+        public void CreateResponse_ErrorResponse_GivenErrorNotCausedByInvalidRoad_ThenErrorResponseReturned()
         {
             var mockProvider = new MockProvider();
             var repo = mockProvider.GetRepository();
 
             var errorResponse = new ErrorResponse() { Message = "Resource not found: http" };
 
-            var result = repo.CreateResponseForNotFound(errorResponse);
+            var result = repo.CreateResponse(errorResponse);
 
             using (new AssertionScope())
             {
@@ -203,17 +208,17 @@ namespace TFL.Road.StatusCheck.Tests.Infrastructure.Repositories
 
         #endregion
 
-        #region CreateResponseForOtherFailures test(s)
+        #region String overload test(s)
 
         [Test]
-        public void CreateResponseForOtherFailures_GivenOnlyScenario_ThenCorrectResponseReturned()
+        public void CreateResponse_String_GivenOnlyScenario_ThenCorrectResponseReturned()
         {
             var mockProvider = new MockProvider();
             var repo = mockProvider.GetRepository();
 
             var message = "This is a test.";
 
-            var result = repo.CreateResponseForOtherFailures(message);
+            var result = repo.CreateResponse(message);
 
             using (new AssertionScope())
             {

@@ -13,6 +13,13 @@ using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Serialiser;
 [assembly: InternalsVisibleTo("TFL.Road.StatusCheck.Tests")]
 namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories
 {
+    /// <summary>
+    /// Implementation of the road repository
+    /// Responsible for getting data from the source - TFL Open Data
+    ///
+    /// The internal methods are exposed to the test project so they can be tested independent of the methods that are using them
+    /// This is also to ensure that the methods using these internal methods won't have overlapping tests
+    /// </summary>
     public class RoadRepository : IRoadRepository
     {
         private readonly ITFLOpenDataClient _tflOpenDataClient;
@@ -42,29 +49,29 @@ namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories
                 case HttpStatusCode.OK:
                     {
                         var roadStatuses = await _responseSerialiser.DeserialiseResponseAsync<IEnumerable<RoadStatus>>(response);
-                        return CreateResponseForOK(roadStatuses);
+                        return CreateResponse(roadStatuses);
                     }
                 case HttpStatusCode.NotFound:
                     {
                         var errorResponse = await _responseSerialiser.DeserialiseResponseAsync<ErrorResponse>(response);
-                        return CreateResponseForNotFound(errorResponse);
+                        return CreateResponse(errorResponse);
                     }
                 case HttpStatusCode.TooManyRequests:
                     {
                         var message = await response.Content.ReadAsStringAsync();
-                        return CreateResponseForOtherFailures(message);
+                        return CreateResponse(message);
                     }
                 default:
                     {
-                        return CreateResponseForOtherFailures($"An error occurred - {response.StatusCode}");
+                        return CreateResponse($"An error occurred - {response.StatusCode}");
                     }
             }
         }
 
-        internal GetRoadStatusResponse CreateResponseForOK(IEnumerable<RoadStatus> roadStatuses)
+        internal GetRoadStatusResponse CreateResponse(IEnumerable<RoadStatus> roadStatuses)
         {
             if (roadStatuses is null || !roadStatuses.Any() || roadStatuses.FirstOrDefault() is null)
-                return CreateResponseForOtherFailures("No results received.");
+                return CreateResponse("No results received.");
 
             return new GetRoadStatusResponse()
             {
@@ -73,7 +80,7 @@ namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories
             };
         }
 
-        internal GetRoadStatusResponse CreateResponseForNotFound(ErrorResponse errorResponse)
+        internal GetRoadStatusResponse CreateResponse(ErrorResponse errorResponse)
         {
             if (errorResponse.Message.ToLowerInvariant().Contains("the following road id is not recognised"))
                 return new GetRoadStatusResponse()
@@ -81,10 +88,10 @@ namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories
                     ResultCode = GetRoadStatusResultCode.InvalidRoad
                 };
 
-            return CreateResponseForOtherFailures(errorResponse.Message);
+            return CreateResponse(errorResponse.Message);
         }
 
-        internal GetRoadStatusResponse CreateResponseForOtherFailures(string message)
+        internal GetRoadStatusResponse CreateResponse(string message)
         {
             return new GetRoadStatusResponse()
             {

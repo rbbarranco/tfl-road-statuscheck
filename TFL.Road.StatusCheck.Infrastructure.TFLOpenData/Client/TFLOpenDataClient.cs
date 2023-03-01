@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Client
 {
+    /// <summary>
+    /// Implementation of the actual http client calls to TFL Open Data
+    /// Extracted from the repository implementation to make it testable
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class TFLOpenDataClient : ITFLOpenDataClient
     {

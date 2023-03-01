@@ -12,6 +12,9 @@ using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Services
 {
+    /// <summary>
+    /// Unit tests for the road service
+    /// </summary>
     public class RoadServiceTests
     {
         private class MockProvider

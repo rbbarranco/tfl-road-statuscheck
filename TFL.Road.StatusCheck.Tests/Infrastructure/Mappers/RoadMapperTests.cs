@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using NUnit.Framework;
 using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.DTO;
@@ -11,6 +6,9 @@ using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Mappers;
 
 namespace TFL.Road.StatusCheck.Tests.Infrastructure.Mappers
 {
+    /// <summary>
+    /// Contains the tests for the infrastructure layer's contract mapper
+    /// </summary>
     public class RoadMapperTests
     {
         [Test]

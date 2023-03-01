@@ -5,10 +5,17 @@ using TFL.Road.StatusCheck.Application.Validators;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Validators
 {
+    /// <summary>
+    /// Validator tests
+    /// </summary>
     public class GetRoadStatusRequestValidatorTests
     {
         #region Road Id test(s)
-
+        
+        /// <summary>
+        /// The purpose of this test is not to test FluentValidation's feature
+        /// This is here to ensure that the validation rule is in place
+        /// </summary>
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]

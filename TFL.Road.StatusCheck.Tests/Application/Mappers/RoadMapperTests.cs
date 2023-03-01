@@ -7,6 +7,9 @@ using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Mappers
 {
+    /// <summary>
+    /// Contains the tests for the application layer's contract mapper
+    /// </summary>
     public class RoadMapperTests
     {
         #region GetRoadStatusRequest Contract to Entity Mapping test(s)
