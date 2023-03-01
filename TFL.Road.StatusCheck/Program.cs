@@ -52,8 +52,6 @@ catch (Exception ex)
 
 static string GetRoadId(string[] args)
 {
-    return "A2";
-
     if (args.Length >= 1)
         return args[0];
     return
