@@ -1,7 +1,9 @@
-﻿using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
+﻿using System.Runtime.CompilerServices;
+using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
 using Contract = TFL.Road.StatusCheck.Contracts.Road.V1;
 using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
+[assembly: InternalsVisibleTo("TFL.Road.StatusCheck.Tests")]
 namespace TFL.Road.StatusCheck.Application.Mappers
 {
     public class RoadMapper : IRoadMapper
@@ -30,17 +32,18 @@ namespace TFL.Road.StatusCheck.Application.Mappers
             };
         }
 
-        private Contract.Output.GetRoadStatusResultCode Map(Entity.Output.GetRoadStatusResultCode resultCode)
+        internal Contract.Output.GetRoadStatusResultCode Map(Entity.Output.GetRoadStatusResultCode resultCode)
         {
             return resultCode switch
             {
                 Entity.Output.GetRoadStatusResultCode.Successful => Contract.Output.GetRoadStatusResultCode.Successful,
                 Entity.Output.GetRoadStatusResultCode.InvalidRoad => Contract.Output.GetRoadStatusResultCode.InvalidRoad,
-                Entity.Output.GetRoadStatusResultCode.OtherFailure => Contract.Output.GetRoadStatusResultCode.OtherFailure
+                Entity.Output.GetRoadStatusResultCode.OtherFailure => Contract.Output.GetRoadStatusResultCode.OtherFailure,
+                _ => throw new ArgumentOutOfRangeException(nameof(resultCode), resultCode, null)
             };
         }
 
-        private Contract.Output.RoadStatusResult? Map(Entity.Output.RoadStatusResult? roadStatusResult)
+        internal Contract.Output.RoadStatusResult? Map(Entity.Output.RoadStatusResult? roadStatusResult)
         {
             if (roadStatusResult is null)
                 return null;

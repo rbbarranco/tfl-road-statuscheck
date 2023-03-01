@@ -55,28 +55,6 @@ namespace TFL.Road.StatusCheck.Tests.Application.Mappers
         }
 
         [Test]
-        public void Map_GetRoadStatusResponse_EntityToContract_GivenRoadStatusNull_ShouldReturnCorrectMapping()
-        {
-            var mapper = new RoadMapper();
-
-            var entity = new Entity.Output.GetRoadStatusResponse()
-            {
-                ResultCode = Entity.Output.GetRoadStatusResultCode.OtherFailure,
-                RoadStatus = default,
-                ResponseNotes = "notes"
-            };
-
-            var contract = mapper.Map(entity);
-
-            using (new AssertionScope())
-            {
-                contract.Should().NotBeNull();
-                contract.RoadStatus.Should().BeNull();
-                contract.ResponseNotes.Should().Be(entity.ResponseNotes);
-            }
-        }
-
-        [Test]
         public void Map_GetRoadStatusResponse_EntityToContract_GivenValidScenario_ShouldReturnCorrectMapping()
         {
             var mapper = new RoadMapper();
@@ -108,26 +86,68 @@ namespace TFL.Road.StatusCheck.Tests.Application.Mappers
             }
         }
 
+        #endregion
+
+        #region Road status result mapping test(s)
+
+        [Test]
+        public void Map_RoadStatusResult_EntityToContract_GivenNull_ShouldReturnNull()
+        {
+            var mapper = new RoadMapper();
+
+            var contract = mapper.Map(default(Entity.Output.RoadStatusResult));
+
+            contract.Should().BeNull();
+        }
+
+        [Test]
+        public void Map_RoadStatusResult_EntityToContract_GivenValidScenario_ShouldReturnCorrectMapping()
+        {
+            var mapper = new RoadMapper();
+
+            var entity = new Entity.Output.RoadStatusResult()
+            {
+                Id = "id",
+                Name = "name",
+                Status = "status",
+                StatusDescription = "description"
+            };
+
+            var contract = mapper.Map(entity);
+
+            using (new AssertionScope())
+            {
+                contract.Should().NotBeNull();
+                contract.Id.Should().Be(entity.Id);
+                contract.Name.Should().Be(entity.Name);
+                contract.Status.Should().Be(entity.Status);
+                contract.StatusDescription.Should().Be(entity.StatusDescription);
+            }
+        }
+
+        #endregion
+
         #region Result code mapping test(s)
 
         [TestCase(Entity.Output.GetRoadStatusResultCode.Successful, Contract.Output.GetRoadStatusResultCode.Successful)]
         [TestCase(Entity.Output.GetRoadStatusResultCode.InvalidRoad, Contract.Output.GetRoadStatusResultCode.InvalidRoad)]
         [TestCase(Entity.Output.GetRoadStatusResultCode.OtherFailure, Contract.Output.GetRoadStatusResultCode.OtherFailure)]
-        public void Map_GetRoadStatusResponse_EntityToContract_GivenDifferentResultCodes_ShouldReturnCorrectMapping(Entity.Output.GetRoadStatusResultCode input, Contract.Output.GetRoadStatusResultCode expectedOutput)
+        public void Map_GetRoadStatusResultCode_EntityToContract_GivenDifferentResultCodes_ShouldReturnCorrectMapping(Entity.Output.GetRoadStatusResultCode input, Contract.Output.GetRoadStatusResultCode expectedOutput)
         {
             var mapper = new RoadMapper();
 
-            var entity = new Entity.Output.GetRoadStatusResponse()
-            {
-                ResultCode = input
-            };
+            var contract = mapper.Map(input);
 
-            var contract = mapper.Map(entity);
-
-            contract.ResultCode.Should().Be(expectedOutput);
+            contract.Should().Be(expectedOutput);
         }
 
-        #endregion
+        [Test]
+        public void Map_GetRoadStatusResultCode_EntityToContract_GivenInvalidResultCode_ShouldReturnCorrectMapping()
+        {
+            var mapper = new RoadMapper();
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => mapper.Map((Entity.Output.GetRoadStatusResultCode)1000));
+        }
 
         #endregion
     }

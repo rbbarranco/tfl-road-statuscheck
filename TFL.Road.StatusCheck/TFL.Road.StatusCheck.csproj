@@ -7,4 +7,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.5.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Application\TFL.Road.StatusCheck.Application.csproj" />
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Contracts\TFL.Road.StatusCheck.Contracts.csproj" />
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Infrastructure.TFLOpenData\TFL.Road.StatusCheck.Infrastructure.TFLOpenData.csproj" />
+  </ItemGroup>
+
 </Project>
