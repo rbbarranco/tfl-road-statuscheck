@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Application.Contracts\TFL.Road.StatusCheck.Application.Contracts.csproj" />
     <ProjectReference Include="..\TFL.Road.StatusCheck.Application\TFL.Road.StatusCheck.Application.csproj" />
-    <ProjectReference Include="..\TFL.Road.StatusCheck.Contracts\TFL.Road.StatusCheck.Contracts.csproj" />
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Infrastructure.TFLOpenData\TFL.Road.StatusCheck.Infrastructure.TFLOpenData.csproj" />
   </ItemGroup>
 
 </Project>

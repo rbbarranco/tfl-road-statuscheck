@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
-using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
-using Contract = TFL.Road.StatusCheck.Contracts.Road.V1;
+using TFL.Road.StatusCheck.Application.Interfaces.Mappers;
+using Contract = TFL.Road.StatusCheck.Application.Contracts.Road.V1;
 using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
 [assembly: InternalsVisibleTo("TFL.Road.StatusCheck.Tests")]

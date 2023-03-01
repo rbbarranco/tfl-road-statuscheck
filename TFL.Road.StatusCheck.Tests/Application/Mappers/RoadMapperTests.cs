@@ -2,7 +2,7 @@
 using FluentAssertions.Execution;
 using NUnit.Framework;
 using TFL.Road.StatusCheck.Application.Mappers;
-using Contract = TFL.Road.StatusCheck.Contracts.Road.V1;
+using Contract = TFL.Road.StatusCheck.Application.Contracts.Road.V1;
 using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Mappers

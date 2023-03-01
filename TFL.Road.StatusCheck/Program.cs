@@ -1,15 +1,18 @@
-﻿using System.Runtime.CompilerServices;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TFL.Road.StatusCheck.Application.Mappers;
+using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Input;
+using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Output;
+using TFL.Road.StatusCheck.Application.Interfaces.Infrastructure.Repositories;
+using TFL.Road.StatusCheck.Application.Interfaces.Services;
 using TFL.Road.StatusCheck.Application.Services;
 using TFL.Road.StatusCheck.Application.Validators;
-using TFL.Road.StatusCheck.Contracts.Road.V1.Input;using TFL.Road.StatusCheck.Contracts.Road.V1.Output;
-using TFL.Road.StatusCheck.Infrastructure.TFLOpenData;
-using TFL.Road.StatusCheck.Interfaces.Infrastructure.Repositories;
-using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
-using TFL.Road.StatusCheck.Interfaces.Services;
+using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Client;
+using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories;
+using TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Serialiser;
+using ApplicationMapperInterfaces = TFL.Road.StatusCheck.Application.Interfaces.Mappers;
+using ApplicationMappers = TFL.Road.StatusCheck.Application.Mappers;
+using InfraMappers = TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Mappers;
 
 var roadId = GetRoadId(args);
 
@@ -21,15 +24,17 @@ try
             //Application layer
             services.AddSingleton<IRoadService, RoadService>();
             services.AddSingleton<IValidator<GetRoadStatusRequest>, GetRoadStatusRequestValidator>();
-            services.AddSingleton<IRoadMapper, RoadMapper>();
+            services.AddSingleton<ApplicationMapperInterfaces.IRoadMapper, ApplicationMappers.RoadMapper>();
 
             //Infrastructure layer
-            services.AddSingleton<IRoadRepository, MockRoadRepository>();
+            services.AddSingleton<IRoadRepository, RoadRepository>();
+            services.AddSingleton<ITFLOpenDataClient, TFLOpenDataClient>();
+            services.AddSingleton<IResponseSerialiser, ResponseSerialiser>();
+            services.AddSingleton<InfraMappers.IRoadMapper, InfraMappers.RoadMapper>();
         }).Build();
     var roadService = host.Services.GetService<IRoadService>();
 
-    var roadStatus = GetRoadStatus(roadId, roadService);
-    
+    var roadStatus = await GetRoadStatusAsync(roadId, roadService);
     PrintResponse(roadStatus, roadId);
     Environment.Exit((int)roadStatus.ResultCode);
 }
@@ -47,16 +52,18 @@ catch (Exception ex)
 
 static string GetRoadId(string[] args)
 {
+    return "A2";
+
     if (args.Length >= 1)
         return args[0];
     return
         string.Empty;
 }
 
-static GetRoadStatusResponse GetRoadStatus(string roadId, IRoadService roadService)
+static async Task<GetRoadStatusResponse> GetRoadStatusAsync(string roadId, IRoadService roadService)
 {
     var request = new GetRoadStatusRequest() { RoadId = roadId };
-    return roadService.GetRoadStatus(request);
+    return await roadService.GetRoadStatusAsync(request);
 }
 
 static void PrintResponse(GetRoadStatusResponse response, string originalRoadId)

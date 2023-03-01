@@ -4,10 +4,10 @@ using FluentValidation;
 using FluentValidation.Results;
 using Moq;
 using NUnit.Framework;
+using TFL.Road.StatusCheck.Application.Interfaces.Infrastructure.Repositories;
+using TFL.Road.StatusCheck.Application.Interfaces.Mappers;
 using TFL.Road.StatusCheck.Application.Services;
-using TFL.Road.StatusCheck.Interfaces.Infrastructure.Repositories;
-using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
-using Contract = TFL.Road.StatusCheck.Contracts.Road.V1;
+using Contract = TFL.Road.StatusCheck.Application.Contracts.Road.V1;
 using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Services
@@ -67,9 +67,9 @@ namespace TFL.Road.StatusCheck.Tests.Application.Services
             public void SetUpRoadRepositoryMock(Entity.Input.GetRoadStatusRequest request,
                 Entity.Output.GetRoadStatusResponse response)
             {
-                _roadRepositoryMock.Setup(m => m.GetRoadStatus(It.Is<Entity.Input.GetRoadStatusRequest>(r =>
+                _roadRepositoryMock.Setup(m => m.GetRoadStatusAsync(It.Is<Entity.Input.GetRoadStatusRequest>(r =>
                     r.RoadId == request.RoadId)))
-                    .Returns(response)
+                    .ReturnsAsync(response)
                     .Verifiable();
             }
 
@@ -85,7 +85,7 @@ namespace TFL.Road.StatusCheck.Tests.Application.Services
         }
 
         [Test]
-        public void GetRoadStatus_GivenValidationFailed_ThenReturnCorrectResponse()
+        public async Task GetRoadStatusAsync_GivenValidationFailed_ThenReturnCorrectResponse()
         {
             var mockProvider = new MockProvider();
             var service = mockProvider.GetService();
@@ -95,7 +95,7 @@ namespace TFL.Road.StatusCheck.Tests.Application.Services
             
             mockProvider.SetUpRequestValidatorMock(request, validationResult);
 
-            var response = service.GetRoadStatus(request);
+            var response = await service.GetRoadStatusAsync(request);
 
             using (new AssertionScope())
             {
@@ -109,7 +109,7 @@ namespace TFL.Road.StatusCheck.Tests.Application.Services
         }
 
         [Test]
-        public void GetRoadStatus_GivenMappingSuccessful_ThenAllExternalCallsMadeAndRepositoryResponseReturnedCorrectly()
+        public async Task GetRoadStatusAsync_GivenMappingSuccessful_ThenAllExternalCallsMadeAndRepositoryResponseReturnedCorrectly()
         {
             var mockProvider = new MockProvider();
             var service = mockProvider.GetService();
@@ -149,7 +149,7 @@ namespace TFL.Road.StatusCheck.Tests.Application.Services
             mockProvider.SetUpRoadRepositoryMock(mappedEntityRequest, repoResponse);
             mockProvider.SetUpMapToContractResponseMock(repoResponse, mappedContractResponse);
 
-            var response = service.GetRoadStatus(request);
+            var response = await service.GetRoadStatusAsync(request);
 
             using (new AssertionScope())
             {

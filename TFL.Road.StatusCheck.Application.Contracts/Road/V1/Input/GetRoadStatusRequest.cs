@@ -1,4 +1,4 @@
-﻿namespace TFL.Road.StatusCheck.Contracts.Road.V1.Input
+﻿namespace TFL.Road.StatusCheck.Application.Contracts.Road.V1.Input
 {
     public record GetRoadStatusRequest
     {

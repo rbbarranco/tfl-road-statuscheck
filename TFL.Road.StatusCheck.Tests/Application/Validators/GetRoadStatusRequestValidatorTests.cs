@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Input;
 using TFL.Road.StatusCheck.Application.Validators;
-using TFL.Road.StatusCheck.Contracts.Road.V1.Input;
 
 namespace TFL.Road.StatusCheck.Tests.Application.Validators
 {

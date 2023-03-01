@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TFL.Road.StatusCheck.Application.Contracts\TFL.Road.StatusCheck.Application.Contracts.csproj" />
     <ProjectReference Include="..\TFL.Road.StatusCheck.Application.Entities\TFL.Road.StatusCheck.Application.Entities.csproj" />
-    <ProjectReference Include="..\TFL.Road.StatusCheck.Contracts\TFL.Road.StatusCheck.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

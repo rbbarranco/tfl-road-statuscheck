@@ -1,7 +1,7 @@
-﻿using Contract = TFL.Road.StatusCheck.Contracts.Road.V1;
+﻿using Contract = TFL.Road.StatusCheck.Application.Contracts.Road.V1;
 using Entity = TFL.Road.StatusCheck.Application.Entities.Road.V1;
 
-namespace TFL.Road.StatusCheck.Interfaces.Mappers.Road
+namespace TFL.Road.StatusCheck.Application.Interfaces.Mappers
 {
     public interface IRoadMapper
     {

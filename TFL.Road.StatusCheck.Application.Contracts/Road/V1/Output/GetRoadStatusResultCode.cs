@@ -1,4 +1,4 @@
-﻿namespace TFL.Road.StatusCheck.Contracts.Road.V1.Output
+﻿namespace TFL.Road.StatusCheck.Application.Contracts.Road.V1.Output
 {
     public enum GetRoadStatusResultCode
     {

@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using TFL.Road.StatusCheck.Contracts.Road.V1.Input;
-using TFL.Road.StatusCheck.Contracts.Road.V1.Output;
-using TFL.Road.StatusCheck.Interfaces.Infrastructure.Repositories;
-using TFL.Road.StatusCheck.Interfaces.Mappers.Road;
-using TFL.Road.StatusCheck.Interfaces.Services;
+using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Input;
+using TFL.Road.StatusCheck.Application.Contracts.Road.V1.Output;
+using TFL.Road.StatusCheck.Application.Interfaces.Infrastructure.Repositories;
+using TFL.Road.StatusCheck.Application.Interfaces.Mappers;
+using TFL.Road.StatusCheck.Application.Interfaces.Services;
 
 namespace TFL.Road.StatusCheck.Application.Services
 {
@@ -20,7 +20,7 @@ namespace TFL.Road.StatusCheck.Application.Services
             _roadRepository = roadRepository;
         }
 
-        public GetRoadStatusResponse GetRoadStatus(GetRoadStatusRequest request)
+        public async Task<GetRoadStatusResponse> GetRoadStatusAsync(GetRoadStatusRequest request)
         {
             var validationResult = _requestValidator.Validate(request);
             if (!validationResult.IsValid)
@@ -32,7 +32,7 @@ namespace TFL.Road.StatusCheck.Application.Services
                 };
 
             var repoRequest = _roadMapper.Map(request);
-            var repoResponse = _roadRepository.GetRoadStatus(repoRequest);
+            var repoResponse = await _roadRepository.GetRoadStatusAsync(repoRequest);
             var response = _roadMapper.Map(repoResponse);
 
             return response;

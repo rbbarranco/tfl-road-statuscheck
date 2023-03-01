@@ -1,12 +1,14 @@
-﻿using TFL.Road.StatusCheck.Application.Entities.Road.V1.Input;
+﻿using System.Diagnostics.CodeAnalysis;
+using TFL.Road.StatusCheck.Application.Entities.Road.V1.Input;
 using TFL.Road.StatusCheck.Application.Entities.Road.V1.Output;
-using TFL.Road.StatusCheck.Interfaces.Infrastructure.Repositories;
+using TFL.Road.StatusCheck.Application.Interfaces.Infrastructure.Repositories;
 
-namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData
+namespace TFL.Road.StatusCheck.Infrastructure.TFLOpenData.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class MockRoadRepository : IRoadRepository
     {
-        public GetRoadStatusResponse GetRoadStatus(GetRoadStatusRequest request)
+        public async Task<GetRoadStatusResponse> GetRoadStatusAsync(GetRoadStatusRequest request)
         {
             if (request.RoadId.ToUpperInvariant() == "A123")
                 return new GetRoadStatusResponse()
