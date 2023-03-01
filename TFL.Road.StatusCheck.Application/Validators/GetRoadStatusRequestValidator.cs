@@ -12,7 +12,16 @@ namespace TFL.Road.StatusCheck.Application.Validators
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(r => r.RoadId).NotEmpty();
+            RuleFor(r => r.RoadId).NotEmpty().WithMessage("RoadId is required.")
+                .DependentRules(() =>
+                {
+                    RuleFor(r => r.RoadId).Must(v =>
+                            !v.ToLowerInvariant().Contains("/") &&
+                            !v.ToLowerInvariant().Contains("\\") &&
+                            !v.ToLowerInvariant().Contains("app_id") &&
+                            !v.ToLowerInvariant().Contains("app_key"))
+                        .WithMessage("Invalid characters in RoadId.");
+                });
         }
     }
 }
