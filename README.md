@@ -47,9 +47,32 @@ If preferred, you can publish the code to a specified folder location using Visu
 ## Implementation Notes
 
 ### Structure
-The solution is written following the Onion architecture
-* TFL.Road.StatusCheck
-   * The project is the User Interface layer
-   * This is where I injected the dependencies
-* 
+The solution is written following the Onion architecture. Since the solution doesn't really need a Domain layer, that was skipped.
+* User Interface Layer
+   * TFL.Road.StatusCheck
+      * This is where dependencies were injected
+      * Only reponsible for what will be displayed and what application code will be returned
+* Application Layer
+   * TFL.Road.StatusCheck.Application.Contracts
+      * This is where the contracts are defined
+      * The contracts here are only used for the communication between the User Interface layer and the Application layer
+   * TFL.Road.StatusCheck.Application.Entities
+      * This is where the entities are defined
+      * The entities are only used for the communication between the Application layer and the Infrastructure layer
+   * TFL.Road.StatusCheck.Application.Interfaces
+      * This is where the interfaces are defined e.g. IRoadService, IRoadMapper, and others.
+      * Since the solution is following the Onion architecture, this is where the interfaces that should be implemented by the Infrastructure layer are defined - IRoadRepository
+   * TFL.Road.StatusCheck.Application
+      * This is where the actual implementation of the services, mappers, and all other application layer classes are implemented.
+      * The road service class acts only as a coordinator
+* Infrastructure Layer
+   * TFL.Road.StatusCheck.Infrastructure.TFLOpenData.DTO
+      * This is where the DTO's are defined
+      * The DTO's are the objects to which the responses from TFL's Open Data API are deserialised to
+   * TFL.Road.StatusCheck.Infrastructure.TFLOpenData
+      * This is where the implementation of the IRoadRepository defined in the application layer's interfaces project is done
+      * A crude implementation of a client and serialiser are also done in separate classes to make the repository testable
+* Tests
+   * TFL.Road.StatusCheck.Tests
+      * Contains all the unit tests for all projects in the solution
   
