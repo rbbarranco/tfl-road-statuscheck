@@ -42,5 +42,5 @@ If preferred, you can publish the code to a specified folder location using Visu
 ![image](https://user-images.githubusercontent.com/21362502/222509872-305708b7-f7f8-4c29-b34e-3586b040dd23.png) or
 ![image](https://user-images.githubusercontent.com/21362502/222510027-7c368c77-7b01-4fab-a841-ebce0b2abc5e.png)
  
-7. You can also check the application exit code by using the command **echo $LASTEXITCODE** if using PowerShell or **echo %errorlevel%%** if using Windows Command Prompt.
+7. You can also check the application exit code by using the command **echo $LASTEXITCODE** if using PowerShell or **echo %errorlevel%** if using Windows Command Prompt.
   
