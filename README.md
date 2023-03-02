@@ -26,7 +26,7 @@ If preferred, you can publish the code to a specified folder location using Visu
 2. If you published your application, Navigate to the folder where you published the application and open the appSettings.json file using a text editor., If not, open the appSettings.json file in Visual Studio
 3. Put in your own App_key. There is no need to update App_Id as mentioned above.
 
-![image](https://user-images.githubusercontent.com/21362502/222507673-6ad7da13-aa23-459d-a18d-29cf3fb3b5b3.png)
+   ![image](https://user-images.githubusercontent.com/21362502/222507673-6ad7da13-aa23-459d-a18d-29cf3fb3b5b3.png)
 
 4. If updating the file using Visual Studio, make sure to rebuild the code.
 5. Open Windows Commmand Prompt or Windows Powershell and navigate to the folder where the application executable (TFL.Road.StatusCheck.exe) resides.
