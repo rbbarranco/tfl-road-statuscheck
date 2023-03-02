@@ -39,8 +39,8 @@ try
     //Get road status and print response
     var roadId = GetRoadId(args);
     var roadStatus = await GetRoadStatusAsync(roadId, roadService);
-    PrintResponse(roadStatus, roadId);
-    Environment.Exit((int)roadStatus.ResultCode);
+    var exitCode = ProcessResponse(roadStatus, roadId);
+    Environment.Exit(exitCode);
 }
 catch (Exception ex)
 {
@@ -51,8 +51,8 @@ catch (Exception ex)
         ResponseNotes = ex.Message
     };
 
-    PrintResponse(response, null);
-    Environment.Exit((int)response.ResultCode);
+    var exitCode = ProcessResponse(response, null);
+    Environment.Exit(exitCode);
 }
 
 static string GetRoadId(string[] args)
@@ -69,7 +69,9 @@ static async Task<GetRoadStatusResponse> GetRoadStatusAsync(string roadId, IRoad
     return await roadService.GetRoadStatusAsync(request);
 }
 
-static void PrintResponse(GetRoadStatusResponse response, string originalRoadId)
+//Displays the result depending on the result code
+//and returns the application exit code -> (0x0) for Success and (0x1) for any other result
+static int ProcessResponse(GetRoadStatusResponse response, string originalRoadId)
 {
     switch (response.ResultCode)
     {
@@ -78,7 +80,7 @@ static void PrintResponse(GetRoadStatusResponse response, string originalRoadId)
             Console.WriteLine($"The status of {response.RoadStatus?.Name} is as follows");
             Console.WriteLine($"\tRoad Status is {response.RoadStatus?.Status}");
             Console.WriteLine($"\tRoad Status Description is {response.RoadStatus?.StatusDescription}");
-                break;
+            return 0;
         }
         case GetRoadStatusResultCode.InvalidRoad:
         {
@@ -96,4 +98,6 @@ static void PrintResponse(GetRoadStatusResponse response, string originalRoadId)
             break;
         }
     }
+
+    return 1;
 }
