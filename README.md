@@ -30,8 +30,11 @@ If preferred, you can publish the code to a specified folder location using Visu
 
 4. If updating the file using Visual Studio, make sure to rebuild the code.
 5. Open Windows Commmand Prompt or Windows Powershell and navigate to the folder where the application executable (TFL.Road.StatusCheck.exe) resides.
-6. If using Windows PowerShell, run the application using the command .\TFL.Road.StatusCheck.exe Road_Id e.g. **.\TFL.Road.StatusCheck.exe A2**
-   If using Window Command Prompt, run the application using the command TFL.Road.StatusCheck.exe Road_Id e.g. **TFL.Road.StatusCheck.exe A2**
+6. If using Windows PowerShell, run the application using the command .\TFL.Road.StatusCheck.exe Road_Id e.g. 
+   **.\TFL.Road.StatusCheck.exe A2**
+
+   If using Window Command Prompt, run the application using the command TFL.Road.StatusCheck.exe Road_Id e.g. 
+   **TFL.Road.StatusCheck.exe A2**
 
     The result will be displayed like
 ![image](https://user-images.githubusercontent.com/21362502/222509872-305708b7-f7f8-4c29-b34e-3586b040dd23.png) or
