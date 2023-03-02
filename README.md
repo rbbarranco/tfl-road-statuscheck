@@ -25,9 +25,17 @@ If preferred, you can publish the code to a specified folder location using Visu
 1. First make sure that the application is properly configured with the correct App_Key
 2. If you published your application, Navigate to the folder where you published the application and open the appSettings.json file using a text editor., If not, open the appSettings.json file in Visual Studio
 3. Put in your own App_key. There is no need to update App_Id as mentioned above.
+
 ![image](https://user-images.githubusercontent.com/21362502/222507673-6ad7da13-aa23-459d-a18d-29cf3fb3b5b3.png)
+
 4. If updating the file using Visual Studio, make sure to rebuild the code.
 5. Open Windows Commmand Prompt or Windows Powershell and navigate to the folder where the application executable (TFL.Road.StatusCheck.exe) resides.
-6. If using Windows PowerShell run the application using the command **.\TFL.Road.StatusCheck.exe <RoadId>** e.g. **.\TFL.Road.StatusCheck.exe A2**
-7. dasdsa
+6. If using Windows PowerShell, run the application using the command **.\TFL.Road.StatusCheck.exe <RoadId>** e.g. **.\TFL.Road.StatusCheck.exe A2**
+   If using Window Command Prompt, run the application using the command **TFL.Road.StatusCheck.exe <RoadId>** e.g. **TFL.Road.StatusCheck.exe A2**
+
+    The result will be displayed like
+![image](https://user-images.githubusercontent.com/21362502/222509872-305708b7-f7f8-4c29-b34e-3586b040dd23.png) or
+![image](https://user-images.githubusercontent.com/21362502/222510027-7c368c77-7b01-4fab-a841-ebce0b2abc5e.png)
+ 
+7. You can also check the application exit code by using the command **echo $LASTEXITCODE** if using PowerShell or **echo %errorlevel%%** if using Windows Command Prompt.
   
