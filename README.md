@@ -43,4 +43,13 @@ If preferred, you can publish the code to a specified folder location using Visu
 ![image](https://user-images.githubusercontent.com/21362502/222510027-7c368c77-7b01-4fab-a841-ebce0b2abc5e.png)
  
 7. You can also check the application exit code by using the command **echo $LASTEXITCODE** if using PowerShell or **echo %errorlevel%** if using Windows Command Prompt.
+
+## Implementation Notes
+
+### Structure
+The solution is written following the Onion architecture
+* TFL.Road.StatusCheck
+   * The project is the User Interface layer
+   * This is where I injected the dependencies
+* 
   
