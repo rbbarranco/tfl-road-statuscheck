@@ -76,3 +76,21 @@ The solution is written following the Onion architecture. Since the solution doe
    * TFL.Road.StatusCheck.Tests
       * Contains all the unit tests for all projects in the solution
   
+### Contracts
+* Note that I've created separate input and output contracts. It is good practice to separate these two. 
+* Although we're only expecting RoadId as the input, it is good practice to put this is in a "request" class. Mainly so we can easily separate the validation of requests in separate validator classes, as was done in this solution, and keep the service class logic free.
+
+### Validator
+* I've added a validator class here using FluentValidator. This validator only validates the "cleanliness" of the request, and not the actual business logic. E.g. required validations, length validations, invalid character validations, etc.
+
+### Mappers
+* In this solution, I've manually created mapper classes. But this can easily be done using any mapping library e.g. AutoMapper.
+
+### Unit tests
+* Notice that in a couple of classes, I've added the assembly attribute InternalsVisibleTo. 
+   * Reason for doing this is because these methods don't need to be exposed publicly but it would be good to have unit tests against them.
+   * Also the methods consuming these internal methods can be tested independently without having to do assertions related to the internal methods.
+   * One way to avoid using this attribute is to extract these internal methods to a separate class and inject it, but this a bit of an overkill.
+
+### Additional notes
+More information regarding some details are in comments in the code
