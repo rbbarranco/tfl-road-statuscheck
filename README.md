@@ -14,7 +14,7 @@ This is an implementation of TFL's Developer Coding Challenge
 
 ### Publishing the code
 If preferred, you can publish the code to a specified folder location using Visual Studio
-* Make sure the solution is building
+* Make sure the solution is built properly
 * Select Build>Publish Selection
 * Select Folder as Target
 * Select Folder as Specific target
