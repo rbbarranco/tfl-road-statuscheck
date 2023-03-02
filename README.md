@@ -3,14 +3,16 @@ This is an implementation of TFL's Developer Coding Challenge
 
 ### Some notes on the challenge requirements
 * Saw in this [post](https://techforum.tfl.gov.uk/t/not-able-to-find-app-id-and-key/1883/2) that the App_Id is no longer needed. My testing also shows that it is no longer required. But I kept it in the config file and I still append it in the requests done to the TFL Open Data's Road endpoint.
+* I've added a couple of other scenarios, not just the successful and invalid road scenarios.
 
 ## Building, Publishing, Running the application
 
-### Building the code
+### Building the code and running the unit tests
 * Unzip the files to a folder (if using the provided zip file) or download the code from [github](https://github.com/rbbarranco/tfl-road-statuscheck). 
 * Make sure you have the latest .NET Framework/SDK installed.
 * Make sure you have access to nuget as the packages might need to be restored on the first time you build the solution.
 * Open and build the solution using Visual Studio. 
+* You can use Visual Studio's test runner to run all the tests in the solution.
 
 ### Publishing the code
 If preferred, you can publish the code to a specified folder location using Visual Studio
