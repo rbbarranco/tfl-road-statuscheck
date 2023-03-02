@@ -23,7 +23,7 @@ If preferred, you can publish the code to a specified folder location using Visu
 
 ### Running and testing the code
 1. First make sure that the application is properly configured with the correct App_Key
-2. If you published your application, Navigate to the folder where you published the application and open the appSettings.json file using a text editor., If not, open the appSettings.json file in Visual Studio
+2. If you published your application, navigate to the folder where you published the application and open the appSettings.json file using a text editor., If not, open the appSettings.json file in Visual Studio
 3. Put in your own App_key. There is no need to update App_Id as mentioned above.
 
    ![image](https://user-images.githubusercontent.com/21362502/222507673-6ad7da13-aa23-459d-a18d-29cf3fb3b5b3.png)
