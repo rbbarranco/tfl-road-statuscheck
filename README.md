@@ -8,8 +8,9 @@ This is an implementation of TFL's Developer Coding Challenge
 
 ### Building the code
 * Unzip the files to a folder (if using the provided zip file) or download the code from [github](https://github.com/rbbarranco/tfl-road-statuscheck). 
-* Open the solution using Visual Studio. Make sure you have the latest .NET Framework/SDK installed.
+* Make sure you have the latest .NET Framework/SDK installed.
 * Make sure you have access to nuget as the packages might need to be restored on the first time you build the solution.
+* Open and build the solution using Visual Studio. 
 
 ### Publishing the code
 If preferred, you can publish the code to a specified folder location using Visual Studio
